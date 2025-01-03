@@ -1,0 +1,22 @@
+import 'dart:ui';
+
+const Color lightpink = Color(0xFFFFF6F7);
+const Color redpink = Color(0xFFFB9E99);
+const Color redpink1 = Color(0xFF774C4B);
+const Color lightpink2 = Color(0xFFFEAEA9);
+const Color lightgreen = Color(0xFFEEF8F7);
+const Color lightblue = Color(0xFFC6DFDC);
+const Color darkblue = Color(0xFF859794);
+const Color darkblue1 = Color(0xFF5E6C6A);
+const Color lavender = Color(0xFFECE9F0);
+const Color lavenderlight = Color(0xFFF9F7FF);
+const Color graypurple = Color(0xFFB5AACA);
+const Color peach = Color(0xFFF3B4AA);
+const Color graypurple1 = Color(0xFF564F60);
+const Color lavender1 = Color(0xFF9ea3cb);
+const Color lavender2 = Color(0xFFa6abd1);
+const Color pink1 = Color(0xFFf7adcd);
+const Color pink2 = Color(0xFFf0a6c7);
+const Color peach1 = Color(0xFFfeaa7a);
+const Color peach2 = Color(0xFFfac09b);
+const Color darkpink = Color(0xFF6A6666);
