@@ -267,7 +267,7 @@ class _ManageRestaurantsPageState extends State<ManageRestaurantsPage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const EditRestaurantPage(restaurant: {},),
+                          builder: (context) => EditRestaurantPage(restaurant: restaurant),
                         ),
                       );
                     },
