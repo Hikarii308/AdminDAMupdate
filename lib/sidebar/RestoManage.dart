@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import '../../constants/colors.dart';
 import '../screens/AddOption/addResto.dart';
+import '../widgets/restoEdit.dart';
 
 class ManageRestaurantsPage extends StatefulWidget {
   const ManageRestaurantsPage({Key? key}) : super(key: key);
@@ -257,13 +258,29 @@ class _ManageRestaurantsPageState extends State<ManageRestaurantsPage> {
             const SizedBox(height: 1),
             Align(
               alignment: Alignment.centerRight,
-              child: IconButton(
-                icon: const Icon(Icons.delete, color: Colors.red),
-                onPressed: () {
-                  setState(() {
-                    restaurants.remove(restaurant);
-                  });
-                },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  IconButton(
+                    icon: const Icon(Icons.edit, color: Colors.grey),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const EditRestaurantPage(restaurant: {},),
+                        ),
+                      );
+                    },
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.delete, color: Colors.red),
+                    onPressed: () {
+                      setState(() {
+                        restaurants.remove(restaurant);
+                      });
+                    },
+                  ),
+                ],
               ),
             ),
           ],
@@ -331,10 +348,26 @@ class _ManageRestaurantsPageState extends State<ManageRestaurantsPage> {
                   ),
                 ],
               ),
-              trailing: IconButton(
-                icon: const Icon(Icons.delete, color: redpink),
-                onPressed: () => setState(
-                        () => restaurants.remove(restaurant)),
+              trailing: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  IconButton(
+                    icon: const Icon(Icons.edit, color: Colors.grey),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => EditRestaurantPage(restaurant: restaurant),
+                        ),
+                      );
+                    },
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.delete, color: redpink),
+                    onPressed: () => setState(
+                            () => restaurants.remove(restaurant)),
+                  ),
+                ],
               ),
             ),
           ],
