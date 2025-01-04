@@ -28,7 +28,6 @@ class _ManageRegionsPageState extends State<ManageRegionsPage> {
 
   void filterRegions(String query) {
     setState(() {
-
       searchQuery = query;
     });
   }
@@ -36,7 +35,7 @@ class _ManageRegionsPageState extends State<ManageRegionsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: lavenderlight,
       body: Column(
         children: [
           Padding(
@@ -44,26 +43,25 @@ class _ManageRegionsPageState extends State<ManageRegionsPage> {
             child: Row(
               children: [
                 IconButton(
-                  icon: const Icon(Icons.arrow_back, color: darkblue),
+                  icon: const Icon(Icons.arrow_back, color: graypurple1),
                   onPressed: () {
                     Navigator.pop(context);
                   },
                 ),
                 const SizedBox(width: 8),
                 Text(
-                  "Manage Regions",
+                  "",
                   style: GoogleFonts.poppins(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
-                    color: darkblue,
+                    color: graypurple1,
                   ),
                 ),
                 const Spacer(),
                 IconButton(
-                  icon: const Icon(LineAwesomeIcons.search, color: darkblue),
+                  icon: const Icon(LineAwesomeIcons.search, color: graypurple1),
                   onPressed: () {
                     showSearch(
-
                       context: context,
                       delegate: RegionSearchDelegate(
                         regions: regions,
@@ -76,45 +74,41 @@ class _ManageRegionsPageState extends State<ManageRegionsPage> {
             ),
           ),
           Expanded(
-            child: Container(
-
-              color: searchQuery.isEmpty ? Colors.white : Colors.white,
-              child: ListView.builder(
-                itemCount: regions
+            child: ListView.builder(
+              itemCount: regions
+                  .where((region) => region.toLowerCase().contains(searchQuery.toLowerCase()))
+                  .toList()
+                  .length,
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+              itemBuilder: (context, index) {
+                final filteredRegions = regions
                     .where((region) => region.toLowerCase().contains(searchQuery.toLowerCase()))
-                    .toList()
-                    .length,
-                padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
-                itemBuilder: (context, index) {
-                  final filteredRegions = regions
-                      .where((region) => region.toLowerCase().contains(searchQuery.toLowerCase()))
-                      .toList();
-                  return Card(
-                    margin: const EdgeInsets.only(bottom: 10),
-                    color: Colors.white,
-                    elevation: 3,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: ListTile(
-                      leading: const Icon(LineAwesomeIcons.map_marker, color: darkblue),
-                      title: Text(
-                        filteredRegions[index],
-                        style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w500),
+                    .toList();
+                return Container(
+                  margin: const EdgeInsets.only(bottom: 10),
+                  color: Colors.transparent,
+                  child: Row(
+                    children: [
+                      const Icon(LineAwesomeIcons.map_marker, color: darkblue),
+                      const SizedBox(width: 16),
+                      Expanded(
+                        child: Text(
+                          filteredRegions[index],
+                          style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w500),
+                        ),
                       ),
-                      trailing: IconButton(
+                      IconButton(
                         icon: const Icon(LineAwesomeIcons.alternate_trash, color: redpink1),
                         onPressed: () => deleteRegion(index),
                       ),
-                    ),
-                  );
-                },
-              ),
+                    ],
+                  ),
+                );
+              },
             ),
           ),
         ],
       ),
-
     );
   }
 }
@@ -196,4 +190,3 @@ class RegionSearchDelegate extends SearchDelegate {
     );
   }
 }
-
